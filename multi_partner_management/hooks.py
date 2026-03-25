@@ -43,7 +43,10 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Customer": "public/js/party_client_script.js",
+    "Supplier": "public/js/party_client_script.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -82,8 +85,7 @@ app_license = "mit"
 # Installation
 # ------------
 
-# before_install = "multi_partner_management.install.before_install"
-# after_install = "multi_partner_management.install.after_install"
+after_install = "multi_partner_management.setup.after_install"
 
 # Uninstallation
 # ------------
@@ -137,13 +139,14 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+    "Customer": {
+        "validate": "multi_partner_management.overrides.party_validation.validate"
+    },
+    "Supplier": {
+        "validate": "multi_partner_management.overrides.party_validation.validate"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
@@ -181,9 +184,10 @@ app_license = "mit"
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
-# override_doctype_dashboards = {
-# 	"Task": "multi_partner_management.task.get_dashboard_data"
-# }
+override_doctype_dashboards = {
+    "Customer": "multi_partner_management.overrides.party_dashboard.get_customer_dashboard_data",
+    "Supplier": "multi_partner_management.overrides.party_dashboard.get_supplier_dashboard_data"
+}
 
 # exempt linked doctypes from being automatically cancelled
 #
