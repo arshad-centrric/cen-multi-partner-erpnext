@@ -26,7 +26,7 @@ app_license = "mit"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/multi_partner_management/css/multi_partner_management.css"
-# app_include_js = "/assets/multi_partner_management/js/multi_partner_management.js"
+app_include_js = "/assets/multi_partner_management/js/general_ledger_filter_override.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/multi_partner_management/css/multi_partner_management.css"
